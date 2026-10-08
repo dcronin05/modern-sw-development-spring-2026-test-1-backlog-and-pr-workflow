@@ -3,10 +3,9 @@
 
 import random
 
-# TODO: secret value is hardcoded. It needs to be read from an
+# TODO: secret value was hardcoded. It needs to be read from an
 # environment file or other temporary source instead of included
 # in the code.
-SECRET_CODE = "ADMIN_ACCESS_2025"
 
 p_hp = 50
 b_hp = 50
@@ -48,9 +47,6 @@ while p_hp > 0 and b_hp > 0:
     attack()
   elif choice == 'h':
     heal()
-  elif choice == 'c':
-    if input("Code: ") == SECRET_CODE:
-      b_hp = 0
 
   p_hp -= damage()
 
