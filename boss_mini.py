@@ -24,7 +24,9 @@ def attack():
 # TODO: modify the function to prevent overhealing. The function
 #  permits adding 20 to the value of p_hp if it is already above 30
 # which results in a health value over 50. The function should check
-# the final value to confirm it is <= 50
+# the final value to confirm it is <= 50. The function does not need
+# to check if the player is dead already as the gameplay loop checks
+# this condition.
 def heal():
   global p_hp
   p_hp = min(p_hp + 20, 50)
@@ -49,8 +51,12 @@ while p_hp > 0 and b_hp > 0:
   elif choice == 'c':
     if input("Code: ") == SECRET_CODE:
       b_hp = 0
-  
-  if b_hp > 0:
-    p_hp -= damage()
 
-print("Game Over!")
+  # TODO: If loop needs to be expanded to check for boss or player
+  # death and print appropriate victory or loss message.
+  if b_hp <= 0:
+    print("Victory!")
+  elif p_hp <= 0:
+    print("Game Over!")
+  else:
+    p_hp -= damage()
