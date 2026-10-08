@@ -3,6 +3,9 @@
 
 import random
 
+# TODO: secret value is hardcoded. It needs to be read from an
+# environment file or other temporary source instead of included
+# in the code.
 SECRET_CODE = "ADMIN_ACCESS_2025"
 
 p_hp = 50
@@ -14,12 +17,17 @@ b_hp = 50
 # reduced each time `attack` is called.
 def attack():
   global b_hp
-  b_hp -= damage()
-  print("You deal 10 damage!")
+  dmg = damage()
+  b_hp -= dmg
+  print(f"You deal {dmg} damage!")
 
+# TODO: modify the function to prevent overhealing. The function
+#  permits adding 20 to the value of p_hp if it is already above 30
+# which results in a health value over 50. The function should check
+# the final value to confirm it is <= 50
 def heal():
   global p_hp
-  p_hp += 20
+  p_hp = min(p_hp + 20, 50)
   print(f"Healed! HP is now {p_hp}")
 
 # TODO: Add dmg function that generates and returns random
@@ -27,7 +35,7 @@ def heal():
 # and the game loop to reduce the boss and player health
 # values
 def damage():
-    return random.randint(1,10)
+  return random.randint(1,10)
 
 # --- Simple Game Loop ---
 while p_hp > 0 and b_hp > 0:
@@ -43,6 +51,6 @@ while p_hp > 0 and b_hp > 0:
       b_hp = 0
   
   if b_hp > 0:
-    p_hp -= 10
+    p_hp -= damage()
 
 print("Game Over!")
