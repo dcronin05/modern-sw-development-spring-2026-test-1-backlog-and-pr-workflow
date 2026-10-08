@@ -52,11 +52,11 @@ while p_hp > 0 and b_hp > 0:
     if input("Code: ") == SECRET_CODE:
       b_hp = 0
 
-  # TODO: If loop needs to be expanded to check for boss or player
+  p_hp -= damage()
+
+  # TODO: Loop needs to be expanded to check for boss or player
   # death and print appropriate victory or loss message.
   if b_hp <= 0:
     print("Victory!")
   elif p_hp <= 0:
     print("Game Over!")
-  else:
-    p_hp -= damage()
